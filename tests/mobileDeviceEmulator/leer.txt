@@ -1,0 +1,35 @@
+1 - crear el archivo de prueba 
+C:\Users\laura\Documents\CURSOS\UdemyPlaywight\gitRepo\pw-practice-app
+\tests\mobileDeviceEmulator\testMobile.spec.ts
+
+2 - creo el proyecto que dice en que device correr el test
+en el playwright config
+
+{
+      name: 'mobile',
+      testMatch: 'testMobile.spec.ts',
+      use: { ...devices['iPhone 13 Pro']},
+    },
+
+3 - tmbien se puede hacer con viewport, ajutando el tamano de width y hight
+
+4 - si quiero un test mas universal, 
+cn el test info puedo crear la condicion de que si lo corro por ejemplo en un ipad, 
+que haga esos pasos  y si no no 
+para eso de usa el test info 
+
+----------------
+
+And let's quickly summarize 
+if you want to run your test on the mobile devices.
+
+A good advice will be to create an independent project 
+related to the mobile test and put the test match.
+If you want to keep the mobile test separately inside of the devices, 
+you can select the device that you want to run based on name.
+Visual Studio code will give you a device, 
+
+and if you want to reuse your test and make them universal,
+be able to run them on both platforms, desktop and mobile, 
+you can use a property testInfo.project.name == 'project name'
+and create a conditions when to run certain steps using mobile and when desktop.
