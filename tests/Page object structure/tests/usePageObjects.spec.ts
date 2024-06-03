@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { NavigationPage } from "../page-objects/navigationPage";
 import { FormLayoutsPage } from "../page-objects/formLayoutsPage";
 import { DatepickerPage } from "../page-objects/datepickerPage";
+import { argosScreenshot } from "@argos-ci/playwright";
 
 test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:4200')
@@ -42,5 +43,7 @@ test("using parametrized methods", async ({ page }) => {
 test.only("Testing with argos ci", async ({ page }) => {
     const navigateTo = new NavigationPage(page);
     await navigateTo.formLayoutsPage();
+    await argosScreenshot(page, "formLayoutsPage");
     await navigateTo.datepickerPage();
+    await argosScreenshot(page, "datepickerPage");
 });

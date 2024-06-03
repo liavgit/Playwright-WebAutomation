@@ -37,6 +37,22 @@ export default defineConfig<TestOptions>({
 
   //reporte json y junit  y allure - puede ser uno o mas...
   reporter: [
+    // Use "dot" reporter on CI, "list" otherwise (Playwright default).
+    process.env.CI ? ["dot"] : ["list"],
+    // Add Argos reporter.
+    [
+      "@argos-ci/playwright/reporter",
+      {
+        // Upload to Argos on CI only.
+        uploadToArgos: !!process.env.CI,
+
+        // Set your Argos token (required if not using GitHub Actions).
+        /* we don't need to provide token because we already integrated with GitHub directly 
+        with GitHub actions.But if you use GitLab, for example, or any other CI,
+        you may need to provide a token.*/
+        //token: "<YOUR-ARGOS-TOKEN>",
+      },
+    ],
     ['json', {outputFile: 'test-results/jsonReport.json'}],
     ['junit', {outputFile: 'test-results/junitReport.xml'}],
     ["allure-playwright"]
@@ -53,6 +69,7 @@ export default defineConfig<TestOptions>({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    screenshot: "only-on-failure",
     extraHTTPHeaders:{
       'Authorization': `Token ${process.env.ACCESS_TOKEN}`
     }
