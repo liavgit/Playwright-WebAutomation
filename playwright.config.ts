@@ -51,7 +51,7 @@ export default defineConfig<TestOptions>({
         with GitHub actions.But if you use GitLab, for example, or any other CI,
         you may need to provide a token.*/
         //token: "<YOUR-ARGOS-TOKEN>",
-        token: "a58efe2a6e232ccbcb1c5f18a78033de3fb68e2d",
+        token: "xxx",
       },
     ],
     ['json', {outputFile: 'test-results/jsonReport.json'}],
